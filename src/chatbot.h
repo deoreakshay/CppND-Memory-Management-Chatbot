@@ -1,3 +1,4 @@
+
 #ifndef CHATBOT_H_
 #define CHATBOT_H_
 
@@ -29,7 +30,11 @@ public:
 
     //// STUDENT CODE
     ////
-
+    ChatBot(const ChatBot& bot);
+    ChatBot &operator=(const ChatBot &bot);
+    
+    ChatBot(ChatBot &&bot);
+    ChatBot &operator=(ChatBot &&bot);
     ////
     //// EOF STUDENT CODE
 
