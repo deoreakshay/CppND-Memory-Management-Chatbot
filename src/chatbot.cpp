@@ -1,4 +1,3 @@
-#include <iostream>
 #include <random>
 #include <algorithm>
 #include <ctime>
@@ -65,6 +64,7 @@ ChatBot &ChatBot::operator=(const ChatBot &bot)
     this->_chatLogic = bot._chatLogic;
     this->_currentNode = bot._currentNode;
     this->_rootNode = bot._rootNode;
+    return *this;
 }
 
 ChatBot::ChatBot(ChatBot &&bot)
@@ -72,6 +72,7 @@ ChatBot::ChatBot(ChatBot &&bot)
     std::cout << "ChatBot Move Constructor" << std::endl;
     this->_image = bot._image;
     this->_chatLogic = bot._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
     this->_currentNode = bot._currentNode;
     this->_rootNode = bot._rootNode;
     bot._image = nullptr;
@@ -89,12 +90,14 @@ ChatBot &ChatBot::operator=(ChatBot &&bot)
     delete _image;
     this->_image = bot._image;
     this->_chatLogic = bot._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
     this->_currentNode = bot._currentNode;
     this->_rootNode = bot._rootNode;
     bot._image = nullptr;
     bot._chatLogic = nullptr;
     bot._currentNode = nullptr;
-    bot._rootNode = nullptr;   
+    bot._rootNode = nullptr;
+    return *this;   
 }
 ////
 //// EOF STUDENT CODE
